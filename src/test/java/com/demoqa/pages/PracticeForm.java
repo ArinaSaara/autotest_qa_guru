@@ -1,11 +1,11 @@
 package com.demoqa.pages;
 
-import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -51,11 +51,10 @@ public class PracticeForm {
     }
 
     public PracticeForm selectDateOfBirthday(String month, String year, String day) {
-        String daySelector = ".react-datepicker__day--0" + day;
         dateOfBirthInput.click();
         monthOfBirthOption.selectOption(month);
         yearOfBirthOption.selectOption(year);
-        $(daySelector).click();
+        $(".react-datepicker__day--0" + day).click();
         return this;
     }
 
@@ -75,7 +74,7 @@ public class PracticeForm {
     }
 
     public PracticeForm checkHobby(String hobby) {
-        $(Selectors.withText(hobby)).click();
+        $(withText(hobby)).click();
         return this;
     }
 
@@ -84,7 +83,7 @@ public class PracticeForm {
         return this;
     }
 
-    public PracticeForm selectState(String state, String city) {
+    public PracticeForm selectLocation(String state, String city) {
         stateInput.setValue(state).pressEnter();
         cityInput.setValue(city).pressEnter();
         return this;

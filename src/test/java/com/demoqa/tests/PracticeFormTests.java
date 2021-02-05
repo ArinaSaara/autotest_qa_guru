@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PracticeFormTests {
 
@@ -40,12 +39,12 @@ public class PracticeFormTests {
                     .checkHobby(studentData.get("hobbies"))
                     .uploadImage("src/test/resources/files/" + studentData.get("picture"))
                     .inputAddress(studentData.get("address"))
-                    .selectState(state, city)
+                    .selectLocation(state, city)
                     .clickOnCreateStudentButton();
         });
 
         step("Check Thank You Page", () -> {
-            assertTrue(thankYouPage.isPageTitleCorrect("Thanks for submitting the form"), "PageTitle is incorrect");
+            assertEquals(thankYouPage.getPageTitle(), "Thanks for submitting the form");
             Map<String, String> studentDataResult = thankYouPage.getCreatedStudentDataFromThankYouPage();
             assertEquals(studentData, studentDataResult);
         });

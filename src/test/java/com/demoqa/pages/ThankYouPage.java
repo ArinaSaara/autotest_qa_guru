@@ -13,8 +13,8 @@ public class ThankYouPage {
     private final SelenideElement pageTitle = $(".modal-title"),
             tableInfo = $(".table");
 
-    public boolean isPageTitleCorrect(String text) {
-        return pageTitle.shouldHave(Condition.text(text)).isDisplayed();
+    public String getPageTitle() {
+        return pageTitle.shouldBe(Condition.visible).getText();
     }
 
     public Map<String, String> getCreatedStudentDataFromThankYouPage() {
